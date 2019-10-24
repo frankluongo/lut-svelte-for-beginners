@@ -1,17 +1,22 @@
 <script>
   import Container from "./Global/Container.svelte";
-  export let quizName = "Scott Quiz";
-  let title = "";
-  let a = 0;
-  let b = 0;
+
+  let result = "";
+  let correctAnswer = "b";
+
+  function handleButtonClick(input) {
+    pickAnswer(input);
+  }
+
+  function pickAnswer(value) {
+    result = value === correctAnswer ? "Correct" : "WRONG!";
+  }
 </script>
 
 <Container>
-  <h2>{quizName}</h2>
-  <h3>{title}</h3>
-  <input bind:value={title} type="text" />
-  <hr />
-  <h4>{a + b}</h4>
-  <input type="number" name="a" id="a" bind:value={a} />
-  <input type="number" name="b" id="b" bind:value={b} />
+  <h4>{result}</h4>
+  <button on:click={handleButtonClick.bind(this, 'a')}>Answer A</button>
+  <button on:click={handleButtonClick.bind(this, 'b')}>Answer B</button>
+  <button on:click={handleButtonClick.bind(this, 'c')}>Answer C</button>
+  <button on:click={handleButtonClick.bind(this, 'd')}>Answer D</button>
 </Container>
