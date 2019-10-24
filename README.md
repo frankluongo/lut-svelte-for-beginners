@@ -19,5 +19,13 @@ npm install
 npm run dev
 ```
 
+## 03: Starting Code
+
+Reviewed the code that comes in the build
+
+## 04: Our First Component & Props
+
+
+
 [1]: https://www.leveluptutorials.com/tutorials/svelte-for-beginners/what-is-svelte
 [2]: https://svelte.dev/
