@@ -1,0 +1,11 @@
+{
+  "name": "lut-svelte-for-beginners",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/frankluongo/lut-svelte-for-beginners.git",
+  "author": "Frank Luongo <frank@frankluongo.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "cd levelup-quiz && npm run dev"
+  }
+}

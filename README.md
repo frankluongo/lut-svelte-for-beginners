@@ -11,6 +11,13 @@ A JavaScript Framework For Interactive, Complex Web Applications
 
 ## 02: Getting Started
 
+```bash
+npx degit sveltejs/template my-project-name
+cd my-project-name
 
-1: https://www.leveluptutorials.com/tutorials/svelte-for-beginners/what-is-svelte
-2: https://svelte.dev/
+npm install
+npm run dev
+```
+
+[1]: https://www.leveluptutorials.com/tutorials/svelte-for-beginners/what-is-svelte
+[2]: https://svelte.dev/
