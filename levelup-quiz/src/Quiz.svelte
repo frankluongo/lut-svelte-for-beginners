@@ -3,6 +3,7 @@
 
   let result = "";
   let correctAnswer = "b";
+  let answers = ["a", "b", "c", "d"];
 
   function handleButtonClick(input) {
     pickAnswer(input);
@@ -14,9 +15,14 @@
 </script>
 
 <Container>
-  <h4>{result}</h4>
-  <button on:click={handleButtonClick.bind(this, 'a')}>Answer A</button>
-  <button on:click={handleButtonClick.bind(this, 'b')}>Answer B</button>
-  <button on:click={handleButtonClick.bind(this, 'c')}>Answer C</button>
-  <button on:click={handleButtonClick.bind(this, 'd')}>Answer D</button>
+  {#if result}
+    <h4>{result}</h4>
+  {:else}
+    <h4>Pick an answer</h4>
+  {/if}
+  {#each answers as answer}
+    <button on:click={handleButtonClick.bind(this, answer)}>
+      Answer {answer.toUpperCase()}
+    </button>
+  {/each}
 </Container>
