@@ -1,18 +1,7 @@
 <script>
   import Container from "./Global/Container.svelte";
-
-  let result = "";
-  let correctAnswer = "b";
-  let answers = ["a", "b", "c", "d"];
+  import Question from "./Quiz/Question.svelte";
   let quiz = getQuiz();
-
-  function handleButtonClick(input) {
-    pickAnswer(input);
-  }
-
-  function pickAnswer(value) {
-    result = value === correctAnswer ? "Correct" : "WRONG!";
-  }
 
   async function getQuiz() {
     const res = await fetch(
@@ -24,29 +13,23 @@
   function handleClick() {
     quiz = getQuiz();
   }
+
+  function handleAnswerSelect({ correctAnswer, givenAnswer }) {
+    console.log(correctAnswer, givenAnswer);
+  }
 </script>
 
-<style>
-  /* h4 {
-    color: red;
-  } */
-</style>
-
 <Container>
-  {#if result}
-    <h4>{result}</h4>
-  {:else}
-    <h4>Pick an answer</h4>
-  {/if}
 
-  <h3>
-    {#await quiz}Loading...{:then data}{data.results[0].question}{/await}
-  </h3>
+  <h2>Take The Quiz!</h2>
 
-  {#each answers as answer}
-    <button on:click={handleButtonClick.bind(this, answer)}>
-      Answer {answer.toUpperCase()}
-    </button>
-  {/each}
+  {#await quiz}
+    Loading...
+  {:then data}
+    {#each data.results as question}
+      <Question details={question} />
+    {/each}
+  {/await}
+
   <button on:click={handleClick}>Get Quiz</button>
 </Container>
