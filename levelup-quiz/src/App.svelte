@@ -5,6 +5,12 @@
   export let name = "sup";
 </script>
 
+<style>
+  :global(h4) {
+    color: blue;
+  }
+</style>
+
 <Header />
 <main>
   <Container>

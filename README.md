@@ -136,5 +136,19 @@ Reviewed the code that comes in the build
 </Container>
 ```
 
+## 08: CSS In Svelte
+
+- Scoped by default
+
+To do global...
+
+```svelte
+<style>
+  :global(h4) {
+    color: blue;
+  }
+</style>
+```
+
 [1]: https://www.leveluptutorials.com/tutorials/svelte-for-beginners/what-is-svelte
 [2]: https://svelte.dev/
