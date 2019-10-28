@@ -199,5 +199,15 @@ To do global...
 
 ```
 
+## 10: The Await Tag
+
+```svelte
+    {#await quiz}
+      Loading...
+    {:then data}
+      {data.results[0].question}
+    {/await}
+```
+
 [1]: https://www.leveluptutorials.com/tutorials/svelte-for-beginners/what-is-svelte
 [2]: https://svelte.dev/
