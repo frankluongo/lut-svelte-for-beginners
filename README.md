@@ -441,7 +441,18 @@ To do global...
 
   <button on:click={handleStartNewQuizClick}>Start New Quiz</button>
 </Container>
+```
 
+## 14: Animations in Svelte
+
+```svelte
+<script>
+  import { fade, blur, fly, slide, scale } from "svelte/transition";
+</script>
+<div transition:fly={{ y: 100 }} class="fade-wrapper">
+</div>
+<div in:fly={{ y: 100 }} out:fly={{ y: -100 }} class="fade-wrapper">
+</div>
 ```
 
 [1]: https://www.leveluptutorials.com/tutorials/svelte-for-beginners/what-is-svelte

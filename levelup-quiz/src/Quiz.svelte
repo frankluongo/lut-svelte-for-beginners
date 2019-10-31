@@ -1,4 +1,6 @@
 <script>
+  import { fade, blur, fly, slide, scale } from "svelte/transition";
+
   import Container from "./Global/Container.svelte";
   import Question from "./Quiz/Question.svelte";
 
@@ -32,23 +34,38 @@
   }
 </script>
 
+<style>
+  .fade-wrapper {
+    position: absolute;
+  }
+</style>
+
 <Container>
   <h2>Take The Quiz!</h2>
   <h3>Current Score: {score} | Question {activeQuestion + 1}</h3>
+  <button on:click={handleStartNewQuizClick}>Start New Quiz</button>
 
   {#await quiz}
     Loading...
   {:then data}
     {#each data.results as question, index}
       {#if index === activeQuestion}
-        <Question
-          details={question}
-          {nextQuestion}
-          {setScore}
-          {activeQuestion} />
+        <!-- <div transition:fly={{ y: 100 }} class="fade-wrapper">
+          <Question
+            details={question}
+            {nextQuestion}
+            {setScore}
+            {activeQuestion} />
+        </div> -->
+        <div in:fly={{ y: 100 }} out:fly={{ y: -100 }} class="fade-wrapper">
+          <Question
+            details={question}
+            {nextQuestion}
+            {setScore}
+            {activeQuestion} />
+        </div>
       {/if}
     {/each}
   {/await}
 
-  <button on:click={handleStartNewQuizClick}>Start New Quiz</button>
 </Container>

@@ -21,7 +21,6 @@
   let isAnswered = false;
 
   function handleAnswerSelect({ correct }) {
-    console.log(activeQuestion);
     checkQuestion(correct);
   }
 
