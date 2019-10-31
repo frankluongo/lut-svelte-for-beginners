@@ -1,6 +1,9 @@
 <script>
   import Container from "./Global/Container.svelte";
   import Question from "./Quiz/Question.svelte";
+
+  let activeQuestion = 0;
+  let score = 0;
   let quiz = getQuiz();
 
   async function getQuiz() {
@@ -10,26 +13,42 @@
     return await res.json();
   }
 
-  function handleClick() {
+  function handleStartNewQuizClick() {
     quiz = getQuiz();
+    resetQuiz();
   }
 
-  function handleAnswerSelect({ correctAnswer, givenAnswer }) {
-    console.log(correctAnswer, givenAnswer);
+  function nextQuestion() {
+    activeQuestion = activeQuestion + 1;
+  }
+
+  function resetQuiz() {
+    score = 0;
+    activeQuestion = 0;
+  }
+
+  function setScore() {
+    score = score + 1;
   }
 </script>
 
 <Container>
-
   <h2>Take The Quiz!</h2>
+  <h3>Current Score: {score} | Question {activeQuestion + 1}</h3>
 
   {#await quiz}
     Loading...
   {:then data}
-    {#each data.results as question}
-      <Question details={question} />
+    {#each data.results as question, index}
+      {#if index === activeQuestion}
+        <Question
+          details={question}
+          {nextQuestion}
+          {setScore}
+          {activeQuestion} />
+      {/if}
     {/each}
   {/await}
 
-  <button on:click={handleClick}>Get Quiz</button>
+  <button on:click={handleStartNewQuizClick}>Start New Quiz</button>
 </Container>

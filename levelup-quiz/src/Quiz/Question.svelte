@@ -1,5 +1,8 @@
 <script>
+  export let activeQuestion;
   export let details;
+  export let nextQuestion;
+  export let setScore;
 
   let answers = details.incorrect_answers.map(answer => {
     return {
@@ -18,6 +21,7 @@
   let isAnswered = false;
 
   function handleAnswerSelect({ correct }) {
+    console.log(activeQuestion);
     checkQuestion(correct);
   }
 
@@ -28,6 +32,9 @@
   function checkQuestion(correct) {
     isCorrect = correct;
     isAnswered = true;
+    if (isCorrect) {
+      setScore();
+    }
   }
 
   // Actions
@@ -68,6 +75,13 @@
     border: 1px solid #333;
   }
 
+  .question__answers button[disabled] {
+    color: #ccc;
+
+    background-color: #eee;
+    border: 1px solid #eee;
+  }
+
   .question__answers button:last-of-type {
     margin-right: 0;
   }
@@ -87,9 +101,15 @@
   <div class="question__answers">
     {#each allAnswers as answer}
       <button
-        on:click={handleAnswerSelect.bind(this, { correct: answer.correct })}>
+        on:click={handleAnswerSelect.bind(this, { correct: answer.correct })}
+        disabled={isAnswered}>
         {@html answer.answer}
       </button>
     {/each}
   </div>
+  {#if isAnswered && activeQuestion < 9}
+    <div class="question__next">
+      <button on:click={nextQuestion}>Next Question</button>
+    </div>
+  {/if}
 </div>

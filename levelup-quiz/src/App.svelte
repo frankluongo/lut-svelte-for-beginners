@@ -6,15 +6,17 @@
 </script>
 
 <style>
-  :global(h4) {
-    color: blue;
+  :global(*),
+  :global(*:before),
+  :global(*):after {
+    box-sizing: border-box;
   }
 </style>
 
 <Header />
 <main>
   <Container>
-    <h1>Hello {name}!</h1>
+    <h1>THE Music Quiz</h1>
+    <Quiz quizName="Frank Quiz" />
   </Container>
-  <Quiz quizName="Frank Quiz" />
 </main>
