@@ -321,5 +321,68 @@ To do global...
 </div>
 ```
 
+## 12: Getting The Quiz Working
+
+```svelte
+<script>
+  export let details;
+
+  let answers = details.incorrect_answers.map(answer => {
+    return {
+      answer,
+      correct: false
+    };
+  });
+  let allAnswers = [
+    ...answers,
+    {
+      answer: details.correct_answer,
+      correct: true
+    }
+  ];
+  let isCorrect;
+  let isAnswered = false;
+
+  function handleAnswerSelect({ correct }) {
+    checkQuestion(correct);
+  }
+
+  function shuffle(array) {
+    array.sort(() => Math.random() - 0.5);
+  }
+
+  function checkQuestion(correct) {
+    isCorrect = correct;
+    isAnswered = true;
+  }
+
+  // Actions
+
+  shuffle(allAnswers);
+</script>
+
+<div class="question">
+  <h3>
+    {@html details.question}
+  </h3>
+  {#if isAnswered}
+    {#if isCorrect}
+      <h4>Correct!</h4>
+    {:else}
+      <h4>WRONG!</h4>
+    {/if}
+  {/if}
+  <div class="question__answers">
+    {#each allAnswers as answer}
+      <button
+        on:click={handleAnswerSelect.bind(this, { correct: answer.correct })}>
+        {@html answer.answer}
+      </button>
+    {/each}
+  </div>
+</div>
+
+```
+
 [1]: https://www.leveluptutorials.com/tutorials/svelte-for-beginners/what-is-svelte
 [2]: https://svelte.dev/

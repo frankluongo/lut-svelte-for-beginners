@@ -1,9 +1,38 @@
 <script>
   export let details;
 
-  function handleAnswerSelect({ correctAnswer, givenAnswer }) {
-    console.log(correctAnswer, givenAnswer);
+  let answers = details.incorrect_answers.map(answer => {
+    return {
+      answer,
+      correct: false
+    };
+  });
+  let allAnswers = [
+    ...answers,
+    {
+      answer: details.correct_answer,
+      correct: true
+    }
+  ];
+  let isCorrect;
+  let isAnswered = false;
+
+  function handleAnswerSelect({ correct }) {
+    checkQuestion(correct);
   }
+
+  function shuffle(array) {
+    array.sort(() => Math.random() - 0.5);
+  }
+
+  function checkQuestion(correct) {
+    isCorrect = correct;
+    isAnswered = true;
+  }
+
+  // Actions
+
+  shuffle(allAnswers);
 </script>
 
 <style>
@@ -48,21 +77,18 @@
   <h3>
     {@html details.question}
   </h3>
+  {#if isAnswered}
+    {#if isCorrect}
+      <h4>Correct!</h4>
+    {:else}
+      <h4>WRONG!</h4>
+    {/if}
+  {/if}
   <div class="question__answers">
-    <button
-      on:click={handleAnswerSelect.bind(this, {
-        correctAnswer: details.correct_answer,
-        givenAnswer: details.correct_answer
-      })}>
-      {@html details.correct_answer}
-    </button>
-    {#each details.incorrect_answers as answer}
+    {#each allAnswers as answer}
       <button
-        on:click={handleAnswerSelect.bind(this, {
-          correctAnswer: details.correct_answer,
-          givenAnswer: answer
-        })}>
-        {@html answer}
+        on:click={handleAnswerSelect.bind(this, { correct: answer.correct })}>
+        {@html answer.answer}
       </button>
     {/each}
   </div>
