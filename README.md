@@ -449,7 +449,7 @@ To do global...
 <script>
   import { fade, blur, fly, slide, scale } from "svelte/transition";
 </script>
-<div transition:fly={{ y: 100 }} class="fade-wrapper">
+<div transition:fly={{ y: 100 }} class="fade-wrapper"></div>
 </div>
 <div in:fly={{ y: 100 }} out:fly={{ y: -100 }} class="fade-wrapper">
 </div>
