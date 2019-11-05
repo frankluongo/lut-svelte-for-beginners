@@ -466,5 +466,24 @@ To do global...
   $: questionNumber = activeQuestion + 1;
 ```
 
+## 16: Component Lifecycle
+
+```svelte
+  import { onMount, beforeUpdate, afterUpdate, onDestroy } from "svelte";
+
+  onMount(() => {
+    console.log("mounted");
+  });
+  beforeUpdate(() => {
+    console.log("before updating");
+  });
+  afterUpdate(() => {
+    console.log("after updated");
+  });
+  onDestroy(() => {
+    console.log("DESTROY");
+  });
+```
+
 [1]: https://www.leveluptutorials.com/tutorials/svelte-for-beginners/what-is-svelte
 [2]: https://svelte.dev/

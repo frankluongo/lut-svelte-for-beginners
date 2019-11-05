@@ -1,12 +1,25 @@
 <script>
   import { fade, blur, fly, slide, scale } from "svelte/transition";
-
+  import { onMount, beforeUpdate, afterUpdate, onDestroy } from "svelte";
   import Container from "./Global/Container.svelte";
   import Question from "./Quiz/Question.svelte";
 
   let activeQuestion = 0;
   let score = 0;
   let quiz = getQuiz();
+
+  onMount(() => {
+    console.log("mounted");
+  });
+  beforeUpdate(() => {
+    console.log("before updating");
+  });
+  afterUpdate(() => {
+    console.log("after updated");
+  });
+  onDestroy(() => {
+    console.log("DESTROY");
+  });
 
   async function getQuiz() {
     const res = await fetch(
