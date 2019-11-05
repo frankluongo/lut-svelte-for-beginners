@@ -1,25 +1,11 @@
 <script>
   import { fade, blur, fly, slide, scale } from "svelte/transition";
-  import { onMount, beforeUpdate, afterUpdate, onDestroy } from "svelte";
   import Container from "./Global/Container.svelte";
   import Question from "./Quiz/Question.svelte";
 
   let activeQuestion = 0;
   let score = 0;
   let quiz = getQuiz();
-
-  onMount(() => {
-    console.log("mounted");
-  });
-  beforeUpdate(() => {
-    console.log("before updating");
-  });
-  afterUpdate(() => {
-    console.log("after updated");
-  });
-  onDestroy(() => {
-    console.log("DESTROY");
-  });
 
   async function getQuiz() {
     const res = await fetch(
@@ -65,7 +51,7 @@
 <Container>
   <h2>Take The Quiz!</h2>
   <h3>Current Score: {score} | Question {questionNumber}</h3>
-  <button on:click={handleStartNewQuizClick}>Start New Quiz</button>
+  <button on:click|once={handleStartNewQuizClick}>Start New Quiz</button>
 
   {#await quiz}
     Loading...

@@ -485,5 +485,18 @@ To do global...
   });
 ```
 
+## 17: Directive Modifiers & The Class Directive
+
+- [Directive Modifiders](3)
+
+```svelte
+<button on:click|once={handleStartNewQuizClick}>Start New Quiz</button>
+<h4 class={isCorrect ? 'correct' : 'wrong'}>
+<h4 class:correct={isCorrect}>
+<h4 class:isCorrect>
+<h4 class:isCorrect class:wrong={!isCorrect}>
+```
+
 [1]: https://www.leveluptutorials.com/tutorials/svelte-for-beginners/what-is-svelte
 [2]: https://svelte.dev/
+[3]: https://svelte.dev/tutorial/event-modifiers

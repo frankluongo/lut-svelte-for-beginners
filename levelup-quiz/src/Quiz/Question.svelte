@@ -91,11 +91,12 @@
     {@html details.question}
   </h3>
   {#if isAnswered}
-    {#if isCorrect}
-      <h4>Correct!</h4>
-    {:else}
-      <h4>WRONG!</h4>
-    {/if}
+    <!-- <h4 class={isCorrect ? 'correct' : 'wrong'}> -->
+    <!-- <h4 class:correct={isCorrect}> -->
+    <!-- <h4 class:isCorrect> -->
+    <h4 class:isCorrect class:wrong={!isCorrect}>
+      {#if isCorrect}Correct!{:else}WRONG!{/if}
+    </h4>
   {/if}
   <div class="question__answers">
     {#each allAnswers as answer}
