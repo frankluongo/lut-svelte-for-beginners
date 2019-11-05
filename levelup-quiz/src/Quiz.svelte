@@ -74,7 +74,7 @@
 </Container>
 
 {#if isModalOpen}
-  <Modal>
+  <Modal on:close={resetQuiz}>
     <div slot="modal">
       <h2>You won!</h2>
       <p>Congratulations</p>

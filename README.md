@@ -551,6 +551,70 @@ To do global...
 {/if}
 ```
 
+## 19: Component Events & Dimensions
+
+```svelte
+<script>
+  import { fly, fade } from "svelte/transition";
+  import { createEventDispatcher } from "svelte";
+
+  const dispatch = createEventDispatcher();
+</script>
+
+<style>
+  .modal-bg {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  .modal {
+    width: 90%;
+    max-width: 30rem;
+    padding: 1rem;
+
+    background-color: #ffffff;
+  }
+</style>
+
+<div class="modal-bg" transition:fade>
+  <div class="modal" in:fly={{ y: 100 }} out:fly={{ y: -100 }}>
+    <button
+      on:click={() => {
+        dispatch('close');
+      }}>
+      Close
+    </button>
+    <!-- <slot>Optional Fallback</slot> -->
+    <slot name="modal">
+      <!-- optional fallback -->
+    </slot>
+  </div>
+</div>
+```
+
+```svelte
+<Modal on:close={resetQuiz}>
+  <div slot="modal">
+    <h2>You won!</h2>
+    <p>Congratulations</p>
+    <button on:click={resetQuiz}>Start Over</button>
+  </div>
+</Modal>
+```
+
+```svelte
+<div class="modal-bg" transition:fade bind:clientWidth={w}>
+```
+
 [1]: https://www.leveluptutorials.com/tutorials/svelte-for-beginners/what-is-svelte
 [2]: https://svelte.dev/
 [3]: https://svelte.dev/tutorial/event-modifiers
