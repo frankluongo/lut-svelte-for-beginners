@@ -9,7 +9,7 @@
   const dispatch = createEventDispatcher();
 </script>
 
-<style>
+<style lang="scss">
   .modal-bg {
     position: fixed;
     top: 0;
@@ -22,14 +22,13 @@
     align-items: center;
 
     background-color: rgba(0, 0, 0, 0.5);
-  }
+    .modal {
+      width: 90%;
+      max-width: 30rem;
+      padding: 1rem;
 
-  .modal {
-    width: 90%;
-    max-width: 30rem;
-    padding: 1rem;
-
-    background-color: #ffffff;
+      background-color: #ffffff;
+    }
   }
 </style>
 

@@ -615,6 +615,61 @@ To do global...
 <div class="modal-bg" transition:fade bind:clientWidth={w}>
 ```
 
+## 20: CSS & Post Processing
+
+```bash
+npm install -D svelte-preprocess
+npm install -D node-sass
+```
+
+Rollup Config File
+
+```js
+import autoPreprocess from "svelte-preprocess";
+...
+plugins: [
+    svelte({
+      preprocess: autoPreprocess(),
+      ...
+```
+
+Svelte Config File
+
+```js
+const sveltePreprocess = require("svelte-preprocess");
+
+module.exports = {
+  preprocess: sveltePreprocess()
+};
+```
+
+Modal Component
+
+```svelte
+<style lang="scss">
+  .modal-bg {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: rgba(0, 0, 0, 0.5);
+    .modal {
+      width: 90%;
+      max-width: 30rem;
+      padding: 1rem;
+
+      background-color: #ffffff;
+    }
+  }
+</style>
+```
+
 [1]: https://www.leveluptutorials.com/tutorials/svelte-for-beginners/what-is-svelte
 [2]: https://svelte.dev/
 [3]: https://svelte.dev/tutorial/event-modifiers
