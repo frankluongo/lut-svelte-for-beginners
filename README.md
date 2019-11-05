@@ -455,5 +455,16 @@ To do global...
 </div>
 ```
 
+## 15: Reactive Expressions
+
+```svelte
+  $: if (score > 1) {
+    alert("You win!");
+    resetQuiz();
+  }
+
+  $: questionNumber = activeQuestion + 1;
+```
+
 [1]: https://www.leveluptutorials.com/tutorials/svelte-for-beginners/what-is-svelte
 [2]: https://svelte.dev/
