@@ -1,6 +1,6 @@
 # Svelte For Beginners by Level Up Tutorials
 
-[Svelte For Beginners](1) | [Svelte Documentation](2)
+[Svelte For Beginners][1] | [Svelte Documentation][2]
 
 ## 01: What Is Svelte
 
@@ -487,7 +487,7 @@ To do global...
 
 ## 17: Directive Modifiers & The Class Directive
 
-- [Directive Modifiders](3)
+- [Directive Modifiders][3]
 
 ```svelte
 <button on:click|once={handleStartNewQuizClick}>Start New Quiz</button>
