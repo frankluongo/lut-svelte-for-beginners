@@ -670,6 +670,36 @@ Modal Component
 </style>
 ```
 
+## 21: Data Stores & Global State
+
+store.js
+
+```js
+import { writable } from "svelte/store";
+
+export const score = writable(0);
+```
+
+```svelte
+<script>
+  import { score } from "./Store.js";
+
+  function resetQuiz() {
+    score.set(0);
+    ...
+  }
+
+  // Reactive Statement
+  $: if ($score > 1) {
+    isModalOpen = true;
+  }
+</script>
+
+<Container>
+  <h3>Current Score: {$score} | Question {questionNumber}</h3>
+...
+```
+
 [1]: https://www.leveluptutorials.com/tutorials/svelte-for-beginners/what-is-svelte
 [2]: https://svelte.dev/
 [3]: https://svelte.dev/tutorial/event-modifiers

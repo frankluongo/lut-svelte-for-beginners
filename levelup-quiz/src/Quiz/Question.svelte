@@ -1,8 +1,8 @@
 <script>
+  import { score } from "../Store.js";
   export let activeQuestion;
   export let details;
   export let nextQuestion;
-  export let setScore;
 
   let answers = details.incorrect_answers.map(answer => {
     return {
@@ -32,7 +32,7 @@
     isCorrect = correct;
     isAnswered = true;
     if (isCorrect) {
-      setScore();
+      score.update(val => val + 1);
     }
   }
 

@@ -3,9 +3,9 @@
   import Container from "./Global/Container.svelte";
   import Question from "./Quiz/Question.svelte";
   import Modal from "./Global/Modal.svelte";
+  import { score } from "./Store.js";
 
   let activeQuestion = 0;
-  let score = 0;
   let quiz = getQuiz();
   let isModalOpen = false;
 
@@ -26,18 +26,14 @@
   }
 
   function resetQuiz() {
-    score = 0;
+    score.set(0);
     activeQuestion = 0;
     isModalOpen = false;
     quiz = getQuiz();
   }
 
-  function setScore() {
-    score = score + 1;
-  }
-
   // Reactive Statement
-  $: if (score > 1) {
+  $: if ($score > 1) {
     isModalOpen = true;
   }
 
@@ -52,7 +48,7 @@
 
 <Container>
   <h2>Take The Quiz!</h2>
-  <h3>Current Score: {score} | Question {questionNumber}</h3>
+  <h3>Current Score: {$score} | Question {questionNumber}</h3>
   <button on:click|once={handleStartNewQuizClick}>Start New Quiz</button>
 
   {#await quiz}
@@ -61,11 +57,7 @@
     {#each data.results as question, index}
       {#if index === activeQuestion}
         <div in:fly={{ y: 100 }} out:fly={{ y: -100 }} class="fade-wrapper">
-          <Question
-            details={question}
-            {nextQuestion}
-            {setScore}
-            {activeQuestion} />
+          <Question details={question} {nextQuestion} {activeQuestion} />
         </div>
       {/if}
     {/each}
